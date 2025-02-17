@@ -50,7 +50,8 @@ code {
   --accent: #E0A628;
   --border-color: #333333;
   --sidebar-width: 260px;
-  --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-sans: -apple-system, BlinkMacSystemFont, system-ui, 'Inter', sans-serif;
+  /* 'Inter' */
   --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -176,9 +177,9 @@ body {
   align-items: center;
   gap: 0.5rem;
   font-weight: 600;
-  margin: 0px 22px;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+  /* margin: 0px 22px; */
+  /* text-transform: uppercase; */
+  /* letter-spacing: 0.5px; */
 }
 
 .pinned i {
@@ -237,7 +238,7 @@ body {
   background: var(--background-secondary);
   border-radius: 8px;
   margin-top: 4px;
-  font-size: 18px;
+  /* font-size: 18px; */
 }
 
 .note-content {
@@ -252,7 +253,7 @@ body {
 .note-content div:first-child {
   font-weight: 500;
   color: var(--text);
-  font-size: 16px;
+  /* font-size: 16px; */
 }
 
 .note-content .preview {
@@ -365,9 +366,9 @@ body {
   font-size: 0.8125rem;
   color: var(--text-secondary);
   font-weight: 600;
-  margin: 0px 22px;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+  /* margin: 0px 22px; */
+  /* text-transform: uppercase; */
+  /* letter-spacing: 0.5px; */
 }
 
 /* Older Section */
@@ -376,9 +377,9 @@ body {
   font-size: 0.8125rem;
   color: var(--text-secondary);
   font-weight: 600;
-  margin: 0px 22px;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+  /* margin: 0px 22px; */
+  /* text-transform: uppercase; */
+  /* letter-spacing: 0.5px; */
 }
 
 .note-item a {

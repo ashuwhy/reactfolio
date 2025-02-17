@@ -10,7 +10,7 @@ function MobileMenu() {
         </div>
 
         <div className="pinned">
-          <i className="fas fa-thumbtack"></i>
+          <span className="fas fa-thumbtack"></span>
           pinned
         </div>
 

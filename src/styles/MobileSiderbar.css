@@ -1,0 +1,46 @@
+/* Mobile-specific styling for the sidebar */
+@media (max-width: 767px) {
+    .sidebar {
+      width: 100%;
+      position: relative;
+      height: auto;
+      min-height: 100vh;
+      padding: 12px 0;
+      display: block; /* Ensure the sidebar is always shown */
+    }
+  
+    /* If you previously had rules hiding the sidebar on non-index pages,
+       override them here so that your mobile sidebar is always visible */
+    body:not(.is-index) .sidebar {
+      display: block;
+    }
+  }
+
+/* Mobile styling for the sidebar */
+.sidebar-mobile {
+    width: 100%;
+    position: relative;
+    height: auto;
+    min-height: 100vh;
+    padding: 12px 0;
+    background-color: var(--background);
+    /* You can add more mobile-specific adjustments here */
+  }
+  
+  .sidebar-mobile .notes {
+    /* Adjust the width/margins for mobile */
+    max-width: var(--sidebar-width);
+    margin: 0 auto;
+  }
+  
+  .sidebar-mobile .notes-header h2 {
+    font-size: 32px;
+    margin: 15px 22px;
+  }
+  
+  .sidebar-mobile .note-item {
+    padding: 14px 22px;
+    /* You can increase spacing or adjust colors for mobile here */
+  }
+  
+  /* Add additional mobile overrides as needed */

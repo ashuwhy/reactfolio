@@ -36,7 +36,7 @@
     --accent: #E0A628;
     --border-color: #333333;
     --sidebar-width: 260px;
-    --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
     --transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1);
 }
 

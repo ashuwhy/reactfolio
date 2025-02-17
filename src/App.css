@@ -65,12 +65,12 @@
     --accent: #E0A628;
     --border-color: #333333;
     --sidebar-width: 260px;
-    --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-sans: -apple-system, BlinkMacSystemFont, system-ui, 'Inter', sans-serif;
     --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Mobile-first styles */
-@media (max-width: 586px) {
+@media (max-width: 767px) {
   .container {
     display: block;
   }
@@ -81,6 +81,7 @@
     height: auto;
     min-height: 100vh;
     padding: 12px 0;
+    display: none;
   }
 
   .main-content {
@@ -92,9 +93,28 @@
     margin-top: 8px;
   }
 
-  /* Hide sidebar in content pages on mobile */
+  /* Show back button only on mobile */
   .layout-container .sidebar {
     display: none;
+  }
+}
+
+/* Tablet styles (768px and up) */
+@media (min-width: 768px) {
+  .sidebar {
+    display: block !important;
+    width: var(--sidebar-width);
+    position: fixed;
+    height: 100vh;
+  }
+  
+  .main-content {
+    margin-left: var(--sidebar-width);
+  }
+  
+  /* Hide back button on tablet/desktop */
+  .back-button {
+    display: none !important;
   }
 }
 
@@ -158,4 +178,57 @@
     .content h2 { font-size: 1.125rem; }
     .content p, .content li { font-size: 0.9375rem; }
     .note-item { font-size: 0.9375rem; }
+}
+
+/* Update mobile breakpoint to 435px */
+@media (max-width: 435px) {
+  body.is-index .sidebar {
+    display: block;
+    width: 100%;
+    position: relative;
+    height: auto;
+    min-height: 100vh;
+    padding: 12px 0;
+  }
+
+  body.is-index .main-content {
+    display: none;
+  }
+
+  /* Mobile-specific sidebar styling */
+  .notes h2 {
+    font-size: 32px;
+    margin: 15px 22px;
+  }
+
+  .note-item {
+    padding: 14px 22px;
+  }
+
+  .pinned, .today, .older {
+    padding: 8px 22px;
+  }
+
+  /* Hide back button on mobile index */
+  body.is-index .back-button {
+    display: none !important;
+  }
+}
+
+/* Keep existing tablet styles (768px+) intact */
+@media (min-width: 768px) {
+  .sidebar {
+    display: block !important;
+    width: var(--sidebar-width);
+    position: fixed;
+    height: 100vh;
+  }
+  
+  .main-content {
+    margin-left: var(--sidebar-width);
+  }
+  
+  .back-button {
+    display: none !important;
+  }
 }

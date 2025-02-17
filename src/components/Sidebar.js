@@ -1,18 +1,32 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+// import '../styles/Sidebar.css';        // Desktop and common styles
+import '../styles/MobileSiderbar.css';  // Mobile-specific styles
 
 function Sidebar() {
   const { pathname } = useLocation();
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+
+  useEffect(() => {
+    function handleResize() {
+      setIsMobile(window.innerWidth < 768);
+    }
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // Combine the base "sidebar" class with the "sidebar-mobile" class on mobile.
+  const sidebarClass = isMobile ? 'sidebar sidebar-mobile' : 'sidebar';
 
   return (
-    <nav className="sidebar">
+    <nav className={sidebarClass}>
       <div className="notes">
         <div className="notes-header">
           <h2>Notes</h2>
         </div>
 
         <div className="pinned">
-          <i className="fas fa-thumbtack"></i>
+          <span className="fas fa-thumbtack"></span>
           pinned
         </div>
 
