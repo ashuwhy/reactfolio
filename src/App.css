@@ -1,0 +1,161 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: local('Inter'),
+         url('/src/fonts/Inter-VariableFont_opsz\,wght.ttf') format('truetype-variations');
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
+    font-synthesis: none;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: local('Inter Italic'),
+         url('/src/fonts/Inter-Italic-VariableFont_opsz\,wght.ttf') format('truetype-variations');
+    font-weight: 100 900;
+    font-style: italic;
+    font-display: swap;
+    font-synthesis: none;
+}
+
+:root {
+    --background: #1a1a1a;
+    --background-secondary: #2a2a2a;
+    --text: #e6e6e6;
+    --text-secondary: #888888;
+    --accent: #E0A628;
+    --border-color: #333333;
+    --sidebar-width: 260px;
+    --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Mobile-first styles */
+@media (max-width: 586px) {
+  .container {
+    display: block;
+  }
+  
+  .sidebar {
+    width: 100%;
+    position: relative;
+    height: auto;
+    min-height: 100vh;
+    padding: 12px 0;
+  }
+
+  .main-content {
+    margin-left: 0;
+    max-width: 100%;
+    padding-top: 4rem;
+    min-height: 100vh;
+    z-index: 1;
+    margin-top: 8px;
+  }
+
+  /* Hide sidebar in content pages on mobile */
+  .layout-container .sidebar {
+    display: none;
+  }
+}
+
+/* Desktop styles */
+@media (min-width: 587px) {
+  /* Hide MobileMenu component on desktop */
+  .mobile-menu {
+    display: none;
+  }
+}
+
+/* MobileMenu styles (full-screen sidebar) */
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: var(--background);
+  z-index: 100;
+  overflow-y: auto; /* Allow scrolling if content overflows */
+  padding: 1rem;
+  /* Copy styles from your .sidebar */
+  color: var(--text);
+    font-family: var(--font-sans);
+    box-sizing: border-box;
+}
+
+.mobile-menu .notes {
+  /* Copy styles from your .sidebar .notes */
+   max-width: var(--sidebar-width);
+    margin: 0 auto;
+}
+
+.mobile-menu .notes-header,
+.mobile-menu .pinned,
+.mobile-menu .today,
+.mobile-menu .older,
+.mobile-menu .note-items {
+    padding: 6px 18px;
+}
+
+.mobile-menu .note-item {
+    padding: 12px 18px;
+    border-radius: 12px;
+    transition: var(--transition);
+    cursor: pointer;
+    margin-bottom: 2px;
+}
+.note-items a {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    gap: 0.75rem;
+    width: 100%;
+    align-items: flex-start;
+}
+
+@media (max-width: 480px) {
+    .content h1 { font-size: 1.75rem; }
+    .content h2 { font-size: 1.125rem; }
+    .content p, .content li { font-size: 0.9375rem; }
+    .note-item { font-size: 0.9375rem; }
+}
