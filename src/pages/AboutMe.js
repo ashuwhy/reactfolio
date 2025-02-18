@@ -5,7 +5,7 @@ function AboutMe() {
   return (
     <>
       <BackButton />
-      <div className="last-edited">3 January 2025 at 8:47 PM</div>
+      <div className="last-edited">18 February 2025 at 11:47 AM</div>
       <div className="content">
         <h1>about me</h1>
         <p>
