@@ -241,7 +241,6 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 0.25rem;
 }
 
 .note-content div:first-child {
@@ -249,20 +248,24 @@ body {
     color: var(--text);
 }
 
-.note-content .preview {
+.preview {
     font-size: 0.75rem;
     color: var(--text-secondary);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
     display: flex;
     gap: 0.5rem;
+    width: 100%;
+    min-width: 0;
 }
 
 .date {
-    font-size: 0.75rem;
-    color: var(--text-secondary);
+    flex-shrink: 0;
+}
+
+.preview-text {
     white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-width: 0;
 }
 
 /* Main Content Styles */

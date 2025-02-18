@@ -6,12 +6,12 @@ function BackButton() {
   const { pathname } = useLocation();
 
   // Hide the back button on the primary page (/about)
-  if (pathname === '/about') return null;
+  if (pathname === '/') return null;
 
   return (
     <button 
       className="back-button" 
-      onClick={() => navigate('/about')}
+      onClick={() => navigate('/')}
       aria-label="Back to main page"
     >
       <img src="/sidebar.leading.svg" alt="Back" />
