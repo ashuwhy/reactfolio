@@ -38,7 +38,7 @@ function Sidebar({ closeSidebar }) {
             <Link to="/about" onClick={handleLinkClick}>
               <span className="emoji">👋</span>
               <div className="note-content">
-                <div>about me</div>
+                <div style={{'font-size': '14px'}}>about me</div>
                 <div className="preview">
                   <div className="date">03/01/2025</div>
                   <span className="preview-text">hey there! i'm a computer science student at IIT Kharagpur</span>
@@ -54,7 +54,7 @@ function Sidebar({ closeSidebar }) {
             <Link to="/links" onClick={handleLinkClick}>
               <span className="emoji">🔗</span>
               <div className="note-content">
-                <div>links</div>
+                <div style={{'font-size': '14px'}}>links</div>
                 <div className="preview">
                   <div className="date">05/01/2025</div>
                   <span className="preview-text">not super active on social media, but you can find me on these platforms</span>
@@ -70,7 +70,7 @@ function Sidebar({ closeSidebar }) {
             <Link to="/reading" onClick={handleLinkClick}>
               <span className="emoji">📚</span>
               <div className="note-content">
-                <div>reading</div>
+                <div style={{'font-size': '14px'}}>reading</div>
                 <div className="preview">
                   <div className="date">02/12/2024</div>
                   <span className="preview-text">books i'm currently reading and some of my favorites.</span>
@@ -78,11 +78,11 @@ function Sidebar({ closeSidebar }) {
               </div>
             </Link>
           </div>
-          <div className={`note-item ${pathname === '/tech-stack' ? 'active' : ''}`}>
+          <div className={`note-item tech-stack ${pathname === '/tech-stack' ? 'active' : ''}`}>
             <Link to="/tech-stack" onClick={handleLinkClick}>
               <span className="emoji">💻</span>
               <div className="note-content">
-                <div>tech stack</div>
+                <div style={{'font-size': '14px'}}>tech stack</div>
                 <div className="preview">
                   <div className="date">12/12/2024</div>
                   <span className="preview-text">a detailed look at the tech stack i use.</span>

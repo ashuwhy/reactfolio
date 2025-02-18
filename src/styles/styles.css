@@ -197,7 +197,7 @@ body {
     transform: translate3d(0, 0, 0);
     will-change: transform, background-color;
     contain: layout style;
-    border-radius: 8px;
+    border-radius: 17px;
     margin-bottom: 2px;
 }
 

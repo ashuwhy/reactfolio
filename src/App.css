@@ -219,6 +219,7 @@
 
   .note-item {
     padding: 14px 22px;
+    background: #222222;
   }
 
   .pinned, .today, .older {

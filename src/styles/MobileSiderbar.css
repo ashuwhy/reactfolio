@@ -11,6 +11,9 @@
       overflow-y: auto; /* Allow content to scroll if needed */
       -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
     }
+    .emoji{
+      background: none !important;
+    }
   
     /* Ensure the content fits within viewport */
     .notes {
@@ -46,7 +49,7 @@
     } 
 
     .note-item {
-      padding: 0 !important;
+      padding: 4px 0px !important;
       margin: 14px 22px;
     }
 }
@@ -90,3 +93,9 @@
   }
   
   /* Add additional mobile overrides as needed */
+
+.tech-stack {
+  margin-top: 4px;  /* Adjust this value to make the margin a little less */
+}
+
+
