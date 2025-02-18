@@ -11,7 +11,7 @@ function AboutMe() {
         <p>
           hey there! i'm ashutosh, a computer science student at IIT Kharagpur (class of '27) with a passion for building innovative solutions to real-world problems.
           <br />
-          when i'm not coding or attending classes, you'll find me diving into space exploration theories, working on music production
+          when i'm not attending classes, i make music and work on side projects, or explore space missions.
         </p>
 
         <h2>currently</h2>
