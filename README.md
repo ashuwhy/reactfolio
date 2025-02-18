@@ -19,9 +19,8 @@ a minimalist portfolio website designed to look and feel like apple notes. built
 
 ## 🛠️ built with
 
-- html & css
-- inter variable font
-- font awesome icons
+- react
+
 
 ## 📄 license
 
