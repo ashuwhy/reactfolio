@@ -1,9 +1,9 @@
 import React from 'react';
 import Sidebar from '../components/Sidebar';
 
-function IndexPage() {
+function MobileIndexPage() {
   return (
-    <div className="container is-index">
+    <div className="mobile-index-container">
       {/* This shows the notes sidebar as the first page on mobile */}
       <Sidebar />
       {/* Add any additional layout/content you want on your mobile index page */}
@@ -11,4 +11,4 @@ function IndexPage() {
   );
 }
 
-export default IndexPage; 
+export default MobileIndexPage; 

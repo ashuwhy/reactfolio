@@ -2,32 +2,65 @@
 @media (max-width: 767px) {
     .sidebar {
       width: 100%;
-      position: relative;
-      height: auto;
-      min-height: 100vh;
+      position: fixed; /* Change from relative to fixed */
+      height: 100%; /* Change from auto to 100% */
+      min-height: 100%;
       padding: 12px 0;
-      display: block; /* Ensure the sidebar is always shown */
+      display: block !important;
       border-right: none;
+      overflow-y: auto; /* Allow content to scroll if needed */
+      -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
     }
   
-    /* If you previously had rules hiding the sidebar on non-index pages,
-       override them here so that your mobile sidebar is always visible */
-    body:not(.is-index) .sidebar {
-      display: block;
+    /* Ensure the content fits within viewport */
+    .notes {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      max-height: 100vh;
+      padding-bottom: env(safe-area-inset-bottom); /* For iOS safe areas */
     }
 
-    .pinned, .today, .older{
+    .notes-header {
+      padding: 15px 22px;
+      flex-shrink: 0; /* Prevent header from shrinking */
+    }
+
+    .notes-header h2 {
+      margin: 0;
+    }
+
+    .note-items {
+      flex: 1;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .pinned, .today, .older {
       padding: 8px 35px !important;
+      flex-shrink: 0; /* Prevent these sections from shrinking */
     }
 
     .note-content div:first-child {
       font-size: 0.75rem;
     } 
+
     .note-item {
       padding: 0 !important;
       margin: 14px 22px;
-  }
+    }
+}
 
+/* Hide scrollbar for Chrome, Safari and Opera */
+.note-items::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.note-items {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
 
 /* Mobile styling for the sidebar */
 .sidebar-mobile {
@@ -57,4 +90,3 @@
   }
   
   /* Add additional mobile overrides as needed */
-}
