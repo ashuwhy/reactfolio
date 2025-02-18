@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ashu - about me</title>
+    <link rel="icon" type="image/png" href="https://cdn.icon-icons.com/icons2/294/PNG/256/Notes_31095.png">
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="stuff/static/css/styles.css" as="style">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" as="style">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    
+    <!-- Prefetch other pages for faster navigation -->
+    <link rel="prefetch" href="index.html">
+    <link rel="prefetch" href="about-me.html">
+    <link rel="prefetch" href="links.html">
+    <link rel="prefetch" href="reading.html">
+    <link rel="prefetch" href="tech-stack.html">
+    
+    <!-- Optimized stylesheet loading -->
+    <link href="stuff/static/css/styles.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Font optimization -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+</head>
+<body>
+    <button class="back-button" onclick="window.location.href='index.html'">
+        <img src="./sidebar.leading.svg" alt="Back" />
+    </button>
+    
+    <div class="container">
+        <div class="sidebar">
+            <div class="notes">
+                <div class="notes-header">
+                    <h2>Notes</h2>
+                </div>
+
+                <div class="pinned">
+                    <i class="fas fa-thumbtack"></i>
+                    pinned
+                </div>
+
+                <div class="note-items">
+                    <div class="note-item active">
+                        <a href="about-me.html">
+                            <span class="emoji">👋</span>
+                            <div class="note-content">
+                                <div>about me</div>
+                                <div class="preview"><div class="date">03/01/2025</div>hey there! i'm...</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="today">today</div>
+
+                <div class="note-items">
+                    <div class="note-item">
+                        <a href="links.html">
+                            <span class="emoji">🔗</span>
+                            <div class="note-content">
+                                <div>links</div>
+                                <div class="preview"><div class="date">05/01/2025</div>not super acti...</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="older">older</div>
+
+                <div class="note-items">
+                    <div class="note-item">
+                        <a href="reading.html">
+                            <span class="emoji">📚</span>
+                            <div class="note-content">
+                                <div>reading</div>
+                                <div class="preview"><div class="date">02/12/2024</div>books i'm curr...</div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="note-item">
+                        <a href="tech-stack.html">
+                            <span class="emoji">💻</span>
+                            <div class="note-content">
+                                <div>tech stack</div>
+                                <div class="preview"><div class="date">12/12/2024</div>a detailed look...</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="last-edited">3 January 2025 at 8:47 PM</div>
+            
+            <div class="content">
+                <h1>about me</h1>
+                <p>hey there! i'm ashutosh, a computer science student at IIT Kharagpur (class of '27) with a passion for building innovative solutions to real-world problems. 
+                <br>when i'm not coding or attending classes, you'll find me diving into space exploration theories, working on music production</p>
+
+                <h2>currently</h2>
+                <ul>
+                    <li>pursuing computer science & engineering at IIT Kharagpur</li>
+                    <li>developing <a href="https://github.com/ashuwhy/lang.as" target="_blank" rel="noopener">lang.as</a></li>
+                    <li>working on "mood classifier" (name pending) - an application powered by essentia.js [private]</li>
+                    <li>exploring AI/ML frontiers, crafting intelligent systems and experimenting with neural architectures</li>
+                    <li>learning about space missions</li>
+                    <li>and making music!</li>
+                </ul>
+
+                <h2>projects</h2>
+                <ul>
+                    <li><a href="https://github.com/ashuwhy/lang.as" target="_blank" rel="noopener">lang.as</a> - multi-language hybrid compiler with high-performance array operations</li>
+                    <li>created <a href="https://github.com/ashuwhy/poplyrics-1k" target="_blank" rel="noopener">poplyrics-1k</a> - a custom dataset for training LLaMA 3.2-3b</li>
+                    <li>developed <a href="https://github.com/ashuwhy/AbleSpleeter" target="_blank" rel="noopener">ablespleeter</a> - a max audio separation tool for ableton</li>
+                    <li>built <a href="https://github.com/ashuwhy/4thcipher" target="_blank" rel="noopener">4thcipher</a> - result of my intrest in cryptography and encryption techniques</li>
+                    <li>and a lot more on my <a href="https://github.com/ashuwhy/" target="_blank" rel="noopener">github</a></li>
+                </ul>
+
+                <h2>interests</h2>
+                <ul>
+                    <li>programming & coding - executing my ideas and solutions into reality</li>
+                    <li>music production - creating mainly pop and electronic tracks, my taste ranges from classical to the latest mainstream</li>
+                    <li>ai/ml - learning about the latest in tech and implementing them in projects</li>
+                    <li>space exploration - learning about satellites, with Voyager 1 & 2 and their computers being my initial inspiration into space</li>
+                </ul>
+
+                <h2>skills & tools</h2>
+                <ul>
+                    <li>languages - python (primary), javascript/typescript, java/kotlin, c/c++</li>
+                    <li>web development - react.js, next.js, django, node.js, postgresql, mongodb</li>
+                    <li>machine learning - tensorflow, pytorch, pandas, numpy</li>
+                    <li>development - vs code, neovim, git, docker, aws, vercel</li>
+                    <li>creative - figma, adobe suite, fl studio, ableton live</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // No need for mobile menu functionality anymore
+    </script>
+</body>
+</html> 

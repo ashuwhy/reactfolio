@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ashu - notes</title>
+    <link rel="icon" type="image/png" href="https://cdn.icon-icons.com/icons2/294/PNG/256/Notes_31095.png">
+    
+    <!-- Resource hints -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.icon-icons.com" crossorigin>
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="https://cdn.icon-icons.com">
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="stuff/static/css/index.css" as="style">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" as="style">
+    <link rel="preload" href="/_next/Inter/Inter-VariableFont_opsz,wght.ttf" as="font" type="font/ttf" crossorigin>
+    
+    <!-- Prefetch other pages for faster navigation -->
+    <link rel="prefetch" href="about-me.html" as="document">
+    <link rel="prefetch" href="links.html" as="document">
+    <link rel="prefetch" href="reading.html" as="document">
+    <link rel="prefetch" href="tech-stack.html" as="document">
+    
+    <!-- Optimized stylesheet loading -->
+    <link href="stuff/static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" media="print" onload="this.media='all'">
+    
+    <!-- Meta tags for performance -->
+    <meta http-equiv="Cache-Control" content="max-age=31536000">
+    <meta name="theme-color" content="#1a1a1a">
+    
+    <!-- Preconnect optimization -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+</head>
+<body class="is-index">
+    <div class="container">
+        <div class="sidebar">
+            <div class="notes">
+                <div class="notes-header">
+                    <h2>Notes</h2>
+                </div>
+
+                <div class="pinned">
+                    <i class="fas fa-thumbtack"></i>
+                    pinned
+                </div>
+
+                <div class="note-items">
+                    <div class="note-item">
+                        <a href="about-me.html">
+                            <span class="emoji">👋</span>
+                            <div class="note-content">
+                                <div>about me</div>
+                                <div class="preview"><div class="date" style="font-size: 14px;">03/01/2025</div>hey there! i'm ashutosh, a...</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="today">today</div>
+
+                <div class="note-items">
+                    <div class="note-item">
+                        <a href="links.html">
+                            <span class="emoji">🔗</span>
+                            <div class="note-content">
+                                <div>links</div>
+                                <div class="preview"><div class="date" style="font-size: 14px;">05/01/2025</div>not super active on social...</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="older">older</div>
+
+                <div class="note-items">
+                    <div class="note-item">
+                        <a href="reading.html">
+                            <span class="emoji">📚</span>
+                            <div class="note-content">
+                                <div>reading</div>
+                                <div class="preview"><div class="date" style="font-size: 14px;">02/12/2024</div>books i'm currently reading...</div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="note-item">
+                        <a href="tech-stack.html">
+                            <span class="emoji">💻</span>
+                            <div class="note-content">
+                                <div>tech stack</div>
+                                <div class="preview"><div class="date" style="font-size: 14px;">12/12/2024</div>a detailed look at the tech...</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Removed redirection script to allow proper mobile/tablet layout -->
+    <!--
+    <script defer>
+        // This was forcing redirect on screens wider than 586px.
+        if (window.innerWidth > 586) {
+            window.location.href = 'about-me.html';
+        }
+    
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 586) {
+                window.location.href = 'about-me.html';
+            }
+        }, { passive: true });
+    </script>
+    -->
+</body>
+</html>

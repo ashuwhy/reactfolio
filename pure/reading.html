@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ashu - reading</title>
+    <link rel="icon" type="image/png" href="https://cdn.icon-icons.com/icons2/294/PNG/256/Notes_31095.png">
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="stuff/static/css/styles.css" as="style">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" as="style">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    
+    <!-- Prefetch other pages for faster navigation -->
+    <link rel="prefetch" href="index.html">
+    <link rel="prefetch" href="links.html">
+    <link rel="prefetch" href="reading.html">
+    <link rel="prefetch" href="tech-stack.html">
+    
+    <!-- Optimized stylesheet loading -->
+    <link href="stuff/static/css/styles.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Font optimization -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+</head>
+<body>
+    <button class="back-button" onclick="window.location.href='index.html'">
+        <img src="./sidebar.leading.svg" alt="Back" />
+    </button>
+    
+    <div class="container">
+        <div class="sidebar">
+            <div class="notes">
+                <div class="notes-header">
+                    <h2>Notes</h2>
+                </div>
+
+                <div class="pinned">
+                    <i class="fas fa-thumbtack"></i>
+                    pinned
+                </div>
+
+                <div class="note-items">
+                    <div class="note-item">
+                        <a href="about-me.html">
+                            <span class="emoji">👋</span>
+                            <div class="note-content">
+                                <div>about me</div>
+                                <div class="preview"><div class="date">03/01/2025</div>hey there! i'm...</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="today">today</div>
+
+                <div class="note-items">
+                    <div class="note-item">
+                        <a href="links.html">
+                            <span class="emoji">🔗</span>
+                            <div class="note-content">
+                                <div>links</div>
+                                <div class="preview"><div class="date">05/01/2025</div>not super acti...</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="older">older</div>
+
+                <div class="note-items">
+                    <div class="note-item active">
+                        <a href="reading.html">
+                            <span class="emoji">📚</span>
+                            <div class="note-content">
+                                <div>reading</div>
+                                <div class="preview"><div class="date">02/12/2024</div>books i'm curr...</div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="note-item">
+                        <a href="tech-stack.html">
+                            <span class="emoji">💻</span>
+                            <div class="note-content">
+                                <div>tech stack</div>
+                                <div class="preview"><div class="date">12/12/2024</div>a detailed look...</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="last-edited">2 December 2024 at 10:15 PM</div>
+            
+            <div class="content">
+                <h1>reading</h1>
+                <p>books i'm currently reading and some of my favorites.</p>
+
+                <h2>currently reading</h2>
+                <ul>
+                    <li><a href="https://www.amazon.com/Creative-Act-Way-Being/dp/0593652886" target="_blank" rel="noopener">The Creative Act</a> -  Rick Rubin</li>
+                    <li><a href="https://www.amazon.in/Thinking-Systems-Donella-H-Meadows/dp/1603580557" target="_blank" rel="noopener">Thinking in Systems</a> - Donella Meadows</li>
+                </ul>
+
+                <h2>have read</h2>
+                <ul>
+                    <li><a href="https://www.amazon.in/Discrete-Combinatorial-Mathematics-Ralph-Grimaldi/dp/8177584243" target="_blank" rel="noopener">Discrete and Combinatorial Mathematics</a> - Ralph P. Grimaldi</li>
+                    <li><a href="https://www.amazon.in/Signals-Systems-Oppenheim-Willsky-Hamid/dp/9332550239" target="_blank" rel="noopener">Signal and System</a> - Alan Oppenheim</li>
+                    <li><a href="https://www.amazon.com/Introduction-Algorithms-fourth-Thomas-Cormen/dp/026204630X" target="_blank" rel="noopener">Introduction to Algorithms</a> - CLRS</li>
+                    <li><a href="https://www.amazon.com/Computer-Systems-Programmers-Perspective-3rd/dp/013409266X" target="_blank" rel="noopener">Computer Systems: A Programmer's Perspective</a> - Bryant, O'Hallaron</li>
+                </ul>
+
+                <h2>others</h2>
+                <ul>
+                    <li><a href="https://www.amazon.com/Atomic-Habits-Proven-Build-Break/dp/0735211299" target="_blank" rel="noopener">Atomic Habits</a> - James Clear</li>
+                    <li><a href="https://www.amazon.com/Think-Grow-Rich-Landmark-Bestseller/dp/1585424331" target="_blank" rel="noopener">Think and Grow Rich</a> - Napoleon Hill</li>
+                    <li><a href="https://www.amazon.com/Creative-Act-Way-Being/dp/0593652886" target="_blank" rel="noopener">The Creative Act</a> -  Rick Rubin</li>
+                    <li><a href="https://www.amazon.com/Foundation-Complete-Books-Trade-Paperback/dp/B09J7X3TQS" target="_blank" rel="noopener">The Foundation</a> - Isaac Asimov </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // No need for mobile menu functionality anymore
+    </script>
+</body>
+</html> 
