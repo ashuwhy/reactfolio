@@ -386,28 +386,39 @@ body {
 
 /* Back Button Styles */
 .back-button {
-    display: none;
-    position: absolute;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    position: fixed;
     top: 1rem;
     left: 1rem;
     z-index: 1100;
     background: none;
     border: none;
-    color: var(--text);
     cursor: pointer;
     padding: 0.5rem;
-    transition: var(--transition);
-    opacity: 0.6;
+    color: var(--text);
+    transition: opacity 0.2s ease;
+    opacity: 0.9;
 }
 
 .back-button:hover {
     opacity: 1;
 }
 
-.back-button img {
-    display: block;
-    width: 24px;
-    margin-top: -1px;
+.back-button svg {
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+}
+
+.back-button span {
+    font-size: 1rem;
+    line-height: 1;
+    margin: 0;
+    vertical-align: middle;
 }
 
 /* Media Queries for Responsive Design */
@@ -424,10 +435,12 @@ body {
         display: none; /* Hide back button on index */
     }
 
-    body:not(.is-index) .back-button {
-        display: block; /* Show back button on non-index pages */
-        margin-left: 5px;
-    }
+
+        body:not(.is-index) .back-button {
+            display: block;
+            /* margin-left: 5px; */
+            top: 3px;
+        }
 
     body.is-index .main-content {
         display: none; /* Hide main content on index for mobile */

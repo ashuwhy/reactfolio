@@ -97,6 +97,22 @@
   .layout-container .sidebar {
     display: none;
   }
+
+  /* Remove default blue highlight */
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Custom touch feedback for note items */
+  .note-item:active {
+    background-color: rgba(255, 205, 55, 0.1); /* Subtle yellow tint */
+    transition: background-color 0.2s ease;
+  }
+
+  /* Prevent any default touch color */
+  .note-item a:active {
+    background-color: transparent;
+  }
 }
 
 /* Tablet styles (768px and up) */
@@ -282,4 +298,59 @@
   .back-button {
     display: none !important;
   }
+}
+
+/* Back Button Styles */
+.back-button {
+  display: flex;
+  align-items: center;
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 1100;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  color: #e2a727;
+  transition: opacity 0.2s ease;
+  opacity: 0.9;
+}
+
+.back-button:hover {
+  opacity: 1;
+}
+
+.back-button svg {
+  width: 20px;
+  height: 20px;
+}
+
+.back-button span {
+  margin-left: 4px;
+  font-size: 18px;
+}
+
+/* Hide back button on desktop */
+@media (min-width: 768px) {
+  .back-button {
+    display: none !important;
+  }
+}
+
+
+/* Remove default blue highlight */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Custom touch feedback for note items */
+.note-item:active {
+  background-color: rgba(255, 205, 55, 0.1); /* Subtle yellow tint */
+  transition: background-color 0.2s ease;
+}
+
+/* Prevent any default touch color */
+.note-item a:active {
+  background-color: transparent;
 }

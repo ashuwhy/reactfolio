@@ -493,6 +493,15 @@ body {
   }
 }
 
+/* Add this to your existing mobile media queries */
+@media (max-width: 425px) {
+  .last-edited {
+    top: 2.5rem !important;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
 /* Make links and their content selectable */
 a, a * {
   -webkit-user-select: text;
