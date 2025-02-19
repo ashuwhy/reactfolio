@@ -40,7 +40,7 @@ function Sidebar({ closeSidebar }) {
               <div className="note-content">
                 <div style={{'font-size': '14px'}}>about me</div>
                 <div className="preview">
-                  <div className="date">03/01/2025</div>
+                  <div className="date">18/02/2025</div>
                   <span className="preview-text">hey there! i'm a computer science student at IIT Kharagpur</span>
                 </div>
               </div>
