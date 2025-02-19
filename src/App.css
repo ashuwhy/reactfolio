@@ -113,6 +113,23 @@
   .note-item a:active {
     background-color: transparent;
   }
+
+  body {
+    width: 100%;
+    height: auto;
+    min-height: 100%;
+  }
+  
+  body.is-mobile-index {
+    height: auto;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .container {
+    overflow: visible;
+    height: auto;
+  }
 }
 
 /* Tablet styles (768px and up) */
@@ -259,46 +276,14 @@
   top: 0;
   left: 0;
   overflow: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 /* Ensure the app container takes full height on mobile */
 #root {
   height: 100vh;
   height: -webkit-fill-available;
-}
-
-/* Prevent body scrolling when on mobile index */
-@media (max-width: 767px) {
-  body {
-    overflow: hidden;
-    position: fixed;
-    width: 100%;
-    height: 100%;
-  }
-  
-  /* Maintain desktop layout */
-  body:not(.is-mobile-index) {
-    position: static;
-    overflow: auto;
-  }
-}
-
-/* Keep existing desktop styles unchanged */
-@media (min-width: 768px) {
-  .sidebar {
-    display: block !important;
-    width: var(--sidebar-width);
-    position: fixed;
-    height: 100vh;
-  }
-  
-  .main-content {
-    margin-left: var(--sidebar-width);
-  }
-  
-  .back-button {
-    display: none !important;
-  }
 }
 
 /* Back Button Styles */
@@ -338,7 +323,6 @@
     display: none !important;
   }
 }
-
 
 /* Remove default blue highlight */
 * {

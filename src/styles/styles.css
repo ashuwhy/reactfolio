@@ -135,19 +135,11 @@ body {
 .sidebar {
     width: var(--sidebar-width);
     background-color: var(--background);
-    height: 100vh;
-    position: fixed;
-    overflow-y: overlay;
+    height: auto;
+    min-height: 100vh;
+    position: relative;
+    overflow-y: visible;
     border-right: 1px solid var(--border-color);
-    overscroll-behavior: contain;
-    -webkit-overflow-scrolling: touch;
-    transform: translate3d(0, 0, 0);
-    backface-visibility: hidden;
-    perspective: 1000;
-    transition: var(--transition);
-    z-index: 1050;
-    contain: strict;
-    isolation: isolate;
 }
 
 .notes-header {
@@ -185,7 +177,7 @@ body {
     display: flex;
     flex-direction: column;
     contain: content;
-    margin: 0 12px;
+    overflow-y: visible;
 }
 
 .note-item {
@@ -274,6 +266,7 @@ body {
     flex: 1;
     margin-left: var(--sidebar-width);
     padding: 3.5rem 2rem 2rem;
+    margin-top: 0px !important;
     max-width: calc(100% - var(--sidebar-width));
     transform: translate3d(0, 0, 0);
     will-change: transform;
@@ -496,3 +489,11 @@ a, a * {
     -ms-user-select: text;
     user-select: text;
 }
+
+.musid {
+    padding: 0.5rem 1rem;
+    /* !important */
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    font-weight: 600;
+  }
