@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import MusicPlayer from './MusicPlayer';
+import Footer from './Footer';
 import '../styles/MobileSiderbar.css';  // Mobile-specific styles
 
 function Sidebar({ closeSidebar }) {
@@ -103,6 +104,8 @@ function Sidebar({ closeSidebar }) {
           </div>
         </>
       )}
+
+      {!isMobile && <Footer />}
     </nav>
   );
 }

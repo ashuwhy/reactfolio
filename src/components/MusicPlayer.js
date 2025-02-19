@@ -114,6 +114,16 @@ const MusicPlayer = () => {
     };
   }, []);
 
+  useEffect(() => {
+    if (iframeRef.current) {
+      const message = {
+        method: 'setVolume',
+        value: isMuted ? 0 : 1
+      };
+      iframeRef.current.contentWindow.postMessage(JSON.stringify(message), '*');
+    }
+  }, [isMuted]);
+
   return (
     <div className="music-player">
       <div className={`player-wrapper ${isLoaded ? 'loaded' : ''}`}>

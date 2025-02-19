@@ -216,3 +216,19 @@
   display: grid;
   justify-content: center;
 }
+
+.mobile-index-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow: hidden; /* Prevents the whole container from scrolling */
+}
+
+.mobile-index-content {
+  flex: 1;
+  overflow-y: hidden; /* Disable scrolling inside the content area */
+}

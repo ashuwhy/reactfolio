@@ -498,3 +498,32 @@ a, a * {
     color: var(--text-secondary);
     font-weight: 600;
   }
+
+.notes-footer {
+  padding: 16px 24px;
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+  opacity: 0.8;
+  text-align: center;
+}
+
+/* Desktop - show in sidebar */
+@media (min-width: 768px) {
+  .notes-footer {
+    position: fixed;
+    bottom: 0;
+    width: var(--sidebar-width);
+    background: var(--background);
+    /* border-top: 1px solid var(--border-color); */
+    padding: 12px 0;
+  }
+}
+
+/* Mobile - show at bottom of index */
+@media (max-width: 767px) {
+  .notes-footer {
+    margin-top: auto;
+    padding: 16px 24px;
+    background: var(--background);
+  }
+}
