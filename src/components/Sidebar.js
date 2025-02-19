@@ -49,7 +49,7 @@ function Sidebar({ closeSidebar }) {
           </div>
         </div>
 
-        <div className="today">today</div>
+        <div className="today">this year</div>
         <div className="note-items">
           <div className={`note-item ${pathname === '/links' ? 'active' : ''}`}>
             <Link to="/links" onClick={handleLinkClick}>
