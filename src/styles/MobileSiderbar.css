@@ -154,13 +154,32 @@
   border-radius: 12px;
   overflow: hidden;
   background: var(--background);
+  position: relative;
+}
+
+.music-player::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  border: 2px solid var(--accent);
+  border-radius: 12px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.music-player:hover::after {
+  opacity: 1;
 }
 
 .music-player iframe {
   border: none;
   width: 100%;
   height: 123px;
-  border-radius: 17px;
+  border-radius: 12px;
   background: var(--background);
   transition: var(--transition);
 }
