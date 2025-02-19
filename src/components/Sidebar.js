@@ -94,12 +94,15 @@ function Sidebar({ closeSidebar }) {
         </div>
       </div>
 
-      {/* Music Player Section */}
-
-      <div className="musid">music</div>
-      <div className="music-section">
-        <MusicPlayer />
-      </div>
+      {/* Music Player Section - Hide on mobile */}
+      {!isMobile && (
+        <>
+          <div className="musid">music</div>
+          <div className="music-section">
+            <MusicPlayer />
+          </div>
+        </>
+      )}
     </nav>
   );
 }
