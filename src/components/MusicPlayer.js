@@ -1,29 +1,28 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
 function MusicPlayer() {
   const iframeRef = useRef(null);
   const location = useLocation();
+  const [isFirstLoad, setIsFirstLoad] = useState(true);
 
   useEffect(() => {
-    // Lazy load the iframe when component mounts
-    if (iframeRef.current) {
-      iframeRef.current.loading = 'lazy';
-      
-      // Add performance attributes
+    if (iframeRef.current && isFirstLoad) {
+      // Only set these attributes on first load
       const iframe = iframeRef.current;
       iframe.setAttribute('importance', 'low');
       iframe.setAttribute('loading', 'lazy');
       iframe.setAttribute('decoding', 'async');
+      setIsFirstLoad(false);
     }
-  }, []);
+  }, [isFirstLoad]);
 
-  // Preserve iframe state during navigation
+  // Don't update src on location change
   useEffect(() => {
     const iframe = iframeRef.current;
-    if (iframe && iframe.src) {
-      const currentSrc = iframe.src;
-      iframe.src = currentSrc;
+    if (iframe) {
+      // Prevent the iframe from reloading
+      iframe.contentWindow?.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
     }
   }, [location]);
 
