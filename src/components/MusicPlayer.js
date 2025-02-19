@@ -132,7 +132,7 @@ const MusicPlayer = () => {
           ref={iframeRef}
           width="100%"
           height="80"
-          src="https://www.youtube.com/embed?listType=playlist&list=PLX8PoUALBJOnl-vV773i4i8wPKBINQ9MG&controls=1&modestbranding=1&playsinline=1&rel=0&enablejsapi=1&origin=ashuwhy.vercel.app&widget_referrer=ashuwhy.vercel.app&autoplay=1&version=3&html5=1&color=white&theme=dark"
+          src="https://www.youtube.com/embed?listType=playlist&list=PLX8PoUALBJOnl-vV773i4i8wPKBINQ9MG&controls=1&modestbranding=1&playsinline=1&rel=0&enablejsapi=1&origin=ashuwhy.vercel.app&widget_referrer=ashuwhy.vercel.app&autoplay=0&version=3&html5=1&color=white&theme=dark"
           title="YouTube Music Player"
           frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

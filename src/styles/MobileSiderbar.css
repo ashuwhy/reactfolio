@@ -50,6 +50,7 @@
     .note-items {
         flex: none;
         overflow-y: visible;
+        margin: 0 22px;
         margin-bottom: 16px;
         -webkit-transform: translateZ(0);
         transform: translateZ(0);
@@ -57,6 +58,7 @@
     }
 
     .pinned, .today, .older {
+        margin: 0px 10px;
         padding: 8px 35px !important;
     }
 
