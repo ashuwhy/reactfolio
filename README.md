@@ -24,6 +24,8 @@ a minimalist portfolio website designed to look and feel like apple notes. built
 
 ## 📄 license
 
-this is a personal portfolio template. while you're welcome to explore the code and learn from it, direct copying or reuse is not permitted. instead, use this as inspiration to create your own unique portfolio design! 
+MIT License,
+
+This is a personal portfolio you can use as a template, while you're welcome to explore the code and learn from it, direct copying or reuse is not permitted. instead, use this as inspiration to create your own unique portfolio design!
 
 © 2025 Ashutosh Sharma. All rights reserved.
