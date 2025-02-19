@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { Analytics } from '@vercel/analytics/react';
 import Layout from './components/Layout';
 import AboutMe from './pages/AboutMe';
 import Links from './pages/Links';
@@ -40,6 +41,7 @@ function App() {
           <Route path="/tech-stack" element={<TechStack />} />
         </Routes>
       </Layout>
+      <Analytics />
     </Router>
   );
 }
