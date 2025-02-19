@@ -9,13 +9,23 @@
         display: block !important;
         border-right: none;
         overflow-y: visible;
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        will-change: transform;
     }
 
-    /* Enable scrolling on body/html */
+    /* Enable smooth scrolling on body/html with hardware acceleration */
     html, body {
         height: 100%;
         overflow-y: auto;
         -webkit-overflow-scrolling: touch;
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+        backface-visibility: hidden;
+        perspective: 1000px;
+        will-change: transform;
     }
 
     .emoji{
@@ -41,6 +51,9 @@
         flex: none;
         overflow-y: visible;
         margin-bottom: 16px;
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+        will-change: transform;
     }
 
     .pinned, .today, .older {
@@ -75,7 +88,7 @@
     }
     
     .music-player iframe {
-     height: 191px !important;
+     height: 193px !important;
     }
 
     .youtube-embed {
@@ -147,7 +160,7 @@
   border: none;
   width: 100%;
   height: 123px;
-  border-radius: 12px;
+  border-radius: 17px;
   background: var(--background);
   transition: var(--transition);
 }

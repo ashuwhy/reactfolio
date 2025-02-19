@@ -432,7 +432,7 @@ body {
         body:not(.is-index) .back-button {
             display: block;
             /* margin-left: 5px; */
-            top: 3px;
+            top: 10px;
         }
 
     body.is-index .main-content {
