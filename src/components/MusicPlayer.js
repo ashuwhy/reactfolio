@@ -8,23 +8,28 @@ const MusicPlayer = () => {
   const [isFirstLoad, setIsFirstLoad] = useState(true);
   const [isLoaded, setIsLoaded] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
+  const [wasPlaying, setWasPlaying] = useState(false);
 
   // Handle visibility changes (e.g. when the tab is hidden)
   useEffect(() => {
     const handleVisibilityChange = () => {
-      if (
-        playerRef.current &&
-        document.hidden &&
-        typeof playerRef.current.pauseVideo === 'function'
-      ) {
+      if (!playerRef.current) return;
+
+      if (document.hidden) {
+        // Store current playing state before pausing
+        setWasPlaying(playerRef.current.getPlayerState() === 1);
         playerRef.current.pauseVideo();
+      } else if (wasPlaying) {
+        // Resume only if it was playing before
+        playerRef.current.playVideo();
       }
     };
+
     document.addEventListener('visibilitychange', handleVisibilityChange);
     return () => {
       document.removeEventListener('visibilitychange', handleVisibilityChange);
     };
-  }, []);
+  }, [wasPlaying]);
 
   // Initialize the YouTube Player (runs once)
   useEffect(() => {
