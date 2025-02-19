@@ -29,7 +29,7 @@ function Sidebar({ closeSidebar }) {
           <h2>Notes</h2>
         </div>
 
-        <div className="pinned">
+        <div className="pinned uppercase">
           <span className="fas fa-thumbtack"></span>
           pinned
         </div>
@@ -49,7 +49,7 @@ function Sidebar({ closeSidebar }) {
           </div>
         </div>
 
-        <div className="today">this year</div>
+        <div className="today uppercase">this year</div>
         <div className="note-items">
           <div className={`note-item ${pathname === '/links' ? 'active' : ''}`}>
             <Link to="/links" onClick={handleLinkClick}>
@@ -65,7 +65,7 @@ function Sidebar({ closeSidebar }) {
           </div>
         </div>
 
-        <div className="older">older</div>
+        <div className="older uppercase">older</div>
         <div className="note-items">
           <div className={`note-item ${pathname === '/reading' ? 'active' : ''}`}>
             <Link to="/reading" onClick={handleLinkClick}>
@@ -97,7 +97,7 @@ function Sidebar({ closeSidebar }) {
       {/* Music Player Section - Hide on mobile */}
       {!isMobile && (
         <>
-          <div className="musid">music</div>
+          <div className="musid uppercase">music</div>
           <div className="music-section">
             <MusicPlayer />
           </div>

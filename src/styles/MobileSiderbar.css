@@ -142,7 +142,7 @@
 }
 
 .music-section {
-  margin: 8px 22px;
+  margin: 8px 16px;
   background: var(--background-secondary);
   /* padding: 12px; */
   border-radius: 17px;
@@ -182,4 +182,35 @@
   border-radius: 12px;
   background: var(--background);
   transition: var(--transition);
+}
+
+.sound-control-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 10;
+  background: rgba(62, 62, 62, 0); /* Translucent background for the blur effect */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  opacity: 0.7;
+  backdrop-filter: blur(100px); /* This adds the background blur effect */
+}
+
+.sound-control-btn:hover {
+  opacity: 1;
+  background: var(--accent);
+}
+
+.player-wrapper {
+  position: relative;
+  display: grid;
+  justify-content: center;
 }

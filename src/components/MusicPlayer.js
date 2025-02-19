@@ -3,128 +3,110 @@ import { useLocation } from 'react-router-dom';
 
 const MusicPlayer = () => {
   const iframeRef = useRef(null);
+  const playerRef = useRef(null);
   const location = useLocation();
   const [isFirstLoad, setIsFirstLoad] = useState(true);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [isMuted, setIsMuted] = useState(false);
 
-  // Handle visibility changes (tab switching)
+  // Handle visibility changes (e.g. when the tab is hidden)
   useEffect(() => {
-    function handleVisibilityChange() {
-      const iframe = iframeRef.current;
-      if (!iframe) return;
-
-      if (document.hidden) {
-        // Pause video when tab is not visible
-        iframe.contentWindow?.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+    const handleVisibilityChange = () => {
+      if (
+        playerRef.current &&
+        document.hidden &&
+        typeof playerRef.current.pauseVideo === 'function'
+      ) {
+        playerRef.current.pauseVideo();
       }
-    }
-
-    // Listen for visibility changes
+    };
     document.addEventListener('visibilitychange', handleVisibilityChange);
-    
     return () => {
       document.removeEventListener('visibilitychange', handleVisibilityChange);
     };
   }, []);
 
+  // Initialize the YouTube Player (runs once)
   useEffect(() => {
     if (iframeRef.current && isFirstLoad) {
       const iframe = iframeRef.current;
       iframe.setAttribute('importance', 'low');
       iframe.setAttribute('loading', 'lazy');
       iframe.setAttribute('decoding', 'async');
-      
-      // Add YouTube API ready event listener
-      window.onYouTubeIframeAPIReady = () => {
-        new window.YT.Player(iframe, {
+
+      const initializePlayer = () => {
+        playerRef.current = new window.YT.Player(iframe, {
           events: {
             onReady: (event) => {
-              event.target.setPlaybackQuality('small');
-            }
-          }
+              const player = event.target;
+              player.setPlaybackQuality('small');
+              // Set the initial mute state
+              if (isMuted) {
+                player.mute();
+              } else {
+                player.unMute();
+                // A user gesture may be needed if the browser blocks autoplay with sound
+                player.playVideo();
+              }
+              setIsLoaded(true);
+            },
+          },
         });
       };
 
+      if (window.YT && window.YT.Player) {
+        initializePlayer();
+      } else {
+        // Load the YouTube API script and set the global callback
+        const tag = document.createElement('script');
+        tag.src = 'https://www.youtube.com/iframe_api';
+        const firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+        window.onYouTubeIframeAPIReady = initializePlayer;
+      }
       setIsFirstLoad(false);
     }
   }, [isFirstLoad]);
 
-  // Don't update src on location change
+  // Update the player whenever the mute state changes (only if the player is ready)
   useEffect(() => {
-    const iframe = iframeRef.current;
-    if (iframe) {
-      iframe.contentWindow?.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+    if (
+      isLoaded &&
+      playerRef.current &&
+      typeof playerRef.current.mute === 'function'
+    ) {
+      if (isMuted) {
+        playerRef.current.mute();
+      } else {
+        playerRef.current.unMute();
+        // Optionally trigger playback (if needed)
+        playerRef.current.playVideo();
+      }
+    }
+  }, [isMuted, isLoaded]);
+
+  // Toggle mute state when the button is clicked
+  const toggleMute = () => {
+    setIsMuted((prev) => !prev);
+  };
+
+  // Pause video on route change
+  useEffect(() => {
+    if (
+      playerRef.current &&
+      typeof playerRef.current.pauseVideo === 'function'
+    ) {
+      playerRef.current.pauseVideo();
     }
   }, [location]);
 
-  // useEffect(() => {
-  //   // Function to inject custom styles into the YouTube iframe
-  //   const injectStyles = () => {
-  //     try {
-  //       const iframe = iframeRef.current;
-  //       if (!iframe) return;
-
-  //       const player = iframe.contentWindow;
-  //       if (!player) return;
-
-  //       // const customStyles = `
-  //       //   .ytp-large-play-button {
-  //       //     background: var(--background-secondary) !important;
-  //       //     border: 2px solid #E0A628 !important;
-  //       //     border-radius: 12px !important;
-  //       //     transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
-  //       //   }
-
-  //       //   .ytp-large-play-button:hover {
-  //       //     background: #E0A628 !important;
-  //       //     transform: scale(1.05) !important;
-  //       //   }
-
-  //       //   .ytp-large-play-button svg {
-  //       //     fill: #E0A628 !important;
-  //       //     opacity: 0.9 !important;
-  //       //   }
-
-  //       //   .ytp-large-play-button:hover svg {
-  //       //     fill: var(--background) !important;
-  //       //   }
-
-  //       //   .ytp-large-play-button-red-bg {
-  //       //     background: none !important;
-  //       //   }
-  //       // `;
-
-  //       const styleSheet = document.createElement('style');
-  //       styleSheet.textContent = customStyles;
-  //       player.document.head.appendChild(styleSheet);
-  //     } catch (error) {
-  //       console.log('Failed to inject styles:', error);
-  //     }
-  //   };
-
-  //   // Add event listener for when iframe loads
-  //   const iframe = iframeRef.current;
-  //   if (iframe) {
-  //     iframe.addEventListener('load', injectStyles);
-  //   }
-
-  //   return () => {
-  //     if (iframe) {
-  //       iframe.removeEventListener('load', injectStyles);
-  //     }
-  //   };
-  // }, []);
-
+  // Optional: Mark as loaded when the iframe load event fires
   useEffect(() => {
-    const handleLoad = () => {
-      setIsLoaded(true);
-    };
-
+    const handleLoad = () => setIsLoaded(true);
     const iframe = iframeRef.current;
     if (iframe) {
       iframe.addEventListener('load', handleLoad);
     }
-
     return () => {
       if (iframe) {
         iframe.removeEventListener('load', handleLoad);
@@ -135,11 +117,22 @@ const MusicPlayer = () => {
   return (
     <div className="music-player">
       <div className={`player-wrapper ${isLoaded ? 'loaded' : ''}`}>
+        <button
+          className="sound-control-btn"
+          onClick={toggleMute}
+          aria-label={isMuted ? 'Unmute' : 'Mute'}
+        >
+          {isMuted ? (
+            <i className="fas fa-volume-mute"></i>
+          ) : (
+            <i className="fas fa-volume-up"></i>
+          )}
+        </button>
         <iframe
           ref={iframeRef}
           width="100%"
           height="80"
-          src="https://www.youtube.com/embed?listType=playlist&list=PLX8PoUALBJOnl-vV773i4i8wPKBINQ9MG&controls=1&modestbranding=1&playsinline=1&rel=0&enablejsapi=1&origin=ashuwhy.vercel.app&widget_referrer=ashuwhy.vercel.app&autoplay=0&version=3&html5=1&color=white&theme=dark"
+          src="https://www.youtube.com/embed?listType=playlist&list=PLX8PoUALBJOnl-vV773i4i8wPKBINQ9MG&controls=1&modestbranding=1&playsinline=1&rel=0&enablejsapi=1&origin=ashuwhy.vercel.app&widget_referrer=ashuwhy.vercel.app&autoplay=1&version=3&html5=1&color=white&theme=dark"
           title="YouTube Music Player"
           frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
