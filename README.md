@@ -11,6 +11,15 @@ a minimalist portfolio website designed to look and feel like apple notes. built
 - responsive layout
 - dark mode by default
 - inter font with variable font support
+- yt music player [mute button not working]
+- backend apis
+- secure admin authentication
+- real-time content management
+- dynamic content updates
+- edit the content without toching the code
+- automatic cache management
+- protected routes
+- token-based authentication
 
 ## 🚀 pages
 
@@ -18,11 +27,28 @@ a minimalist portfolio website designed to look and feel like apple notes. built
 - links - social media and contact info
 - reading - book recommendations
 - tech stack - development tools and technologies
+- login - secure content management interface
+- edit - edit the content without touching the code
 
 ## 🛠️ built with
 
 - react
+- mongodb
+- express.js
+- node.js
+- axios
+- jsonwebtoken
+- bcrypt
+- prismjs
 
+## 🔒 security features
+
+- JWT authentication
+- protected admin routes
+- secure token management
+- automatic token cleanup
+- encrypted passwords
+- secure API endpoints
 
 ## 📄 license
 

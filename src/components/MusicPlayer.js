@@ -70,7 +70,7 @@ const MusicPlayer = () => {
         window.onYouTubeIframeAPIReady = initializePlayer;
       }
       setIsFirstLoad(false);
-    }
+    }// eslint-disable-next-line
   }, [isFirstLoad]);
 
   // Update the player whenever the mute state changes (only if the player is ready)

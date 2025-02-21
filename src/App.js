@@ -7,6 +7,9 @@ import Links from './pages/Links';
 import Reading from './pages/Reading';
 import TechStack from './pages/TechStack';
 import MobileIndexPage from './pages/MobileIndexPage'; // Component for the index view (notes sidebar)
+import Edit from './pages/Edit';
+import ProtectedRoute from './components/ProtectedRoute';
+import Login from './pages/Login';
 import './App.css';
 import './index.css';
 import './styles/pages.css';
@@ -39,6 +42,8 @@ function App() {
           <Route path="/links" element={<Links />} />
           <Route path="/reading" element={<Reading />} />
           <Route path="/tech-stack" element={<TechStack />} />
+          <Route path="/edit" element={<ProtectedRoute><Edit /></ProtectedRoute>} />
+          <Route path="/login" element={<Login />} />
         </Routes>
       </Layout>
       <Analytics />

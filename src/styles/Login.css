@@ -1,0 +1,200 @@
+.login-container {
+  position: relative;
+  flex: 1;
+  padding: 2rem;
+  height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--background);
+}
+
+.login-content {
+  width: 100%;
+  max-width: 360px;
+  padding: 2rem;
+  background: var(--background-secondary);
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  transition: transform 0.2s ease;
+}
+
+/* .login-content:hover {
+  transform: translateY(-2px);
+} */
+
+.login-emoji {
+  font-size: 2rem;
+  margin-bottom: -0.5rem;
+}
+
+.login-content h1 {
+  font-size: 1.5rem;
+  color: var(--text);
+  font-weight: 600;
+  margin: 0;
+}
+
+.login-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.form-group {
+  position: relative;
+  width: 100%;
+}
+
+.form-group input {
+  width: 100%;
+  height: 44px;
+  padding: 0 16px;
+  padding-right: 40px;
+  background: var(--background);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  color: var(--text);
+  font-size: 16px;
+  transition: all 0.2s ease;
+  text-align: left;
+  -webkit-text-security: circle;
+  -moz-text-security: circle;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px var(--accent);
+}
+
+.form-group input::placeholder {
+  color: var(--text-secondary);
+  font-size: 0.9375rem;
+  letter-spacing: normal;
+  text-align: left;
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Writing indicator animation */
+.form-group::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--accent);
+  transition: width 0.3s ease;
+  opacity: 0;
+  border-radius: 2px;
+}
+
+.form-group input:focus + .form-group::after {
+  width: 100%;
+  opacity: 1;
+}
+
+/* .toggle-password {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  padding: 4px;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+} */
+
+.toggle-password:hover {
+  opacity: 1;
+}
+
+.toggle-password svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* When password is visible, remove the circle styling */
+.form-group input[type="text"] {
+  -webkit-text-security: none;
+  -moz-text-security: none;
+}
+
+/* Remove the general .login-form button styles */
+.login-form button[type="submit"] {
+  width: 100%;
+  padding: 0.875rem;
+  margin-top: 0.5rem;
+  background: var(--accent);
+  border: none;
+  border-radius: 8px;
+  color: var(--background);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.login-form button[type="submit"]:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.1);
+}
+
+.login-form button[type="submit"]:active {
+  transform: translateY(0);
+}
+
+.toggle-password {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  padding: 4px;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.toggle-password:hover {
+  opacity: 1;
+}
+
+.toggle-password svg {
+  width: 16px;
+  height: 16px;
+}
+
+@media (max-width: 768px) {
+  .login-container {
+    padding: 1rem;
+  }
+  
+  .login-content {
+    padding: 1.5rem;
+  }
+} 
