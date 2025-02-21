@@ -6,20 +6,17 @@ a minimalist portfolio website designed to look and feel like apple notes. built
 
 ## ✨ features
 
+- secure admin authentication with JWT
+- protected routes and token-based authentication
+- real-time content management system
+- dynamic content updates with automatic cache
 - clean, native apple notes design
+- responsive layout with dark mode
 - smooth transitions and animations
-- responsive layout
-- dark mode by default
 - inter font with variable font support
-- yt music player [mute button not working]
 - backend apis
-- secure admin authentication
-- real-time content management
-- dynamic content updates
-- edit the content without toching the code
-- automatic cache management
-- protected routes
-- token-based authentication
+- edit content through admin interface
+- yt integration [mute button not working]
 
 ## 🚀 pages
 

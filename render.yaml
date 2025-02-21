@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: folio-backend
+    name: reactfolio
     env: node
     buildCommand: npm install
     startCommand: node src/backend/server.js
