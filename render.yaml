@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: folio-backend
+    env: node
+    buildCommand: npm install
+    startCommand: node src/backend/server.js
+    envVars:
+      - key: MONGODB_URI
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+      - key: REACT_APP_USERNAME
+        sync: false
+      - key: REACT_APP_PASSWORD
+        sync: false
