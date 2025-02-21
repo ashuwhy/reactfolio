@@ -9,7 +9,7 @@ function AboutMe() {
       <div className="content">
         <h1>about me</h1>
         <p>
-          hey there! i'm ashutosh, a computer science student at IIT Kharagpur (class of '27) with a passion for building innovative solutions to real-world problems.
+          hey there! i'm ashutosh sharma, a computer science student at IIT Kharagpur (class of '27) with a passion for building innovative solutions to real-world problems.
           <br />
           when i'm not attending classes, i make music and work on side projects, or explore space missions.
         </p>
