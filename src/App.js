@@ -32,8 +32,8 @@ function App() {
     // Only use initial data if localStorage is empty
     if (isInitialLoad) {
       initialData.forEach(page => {
-        const key = `${page.title.toLowerCase()}Content`;
-        const lastFetchKey = `${page.title.toLowerCase()}LastFetch`;
+        const key = `${page.title.toLowerCase().replace(/\s/g, '')}Content`;
+        const lastFetchKey = `${page.title.toLowerCase().replace(/\s/g, '')}LastFetch`;
         
         // Only set initial data if no content exists or last fetch was too old
         const lastFetch = localStorage.getItem(lastFetchKey);
@@ -52,8 +52,8 @@ function App() {
       try {
         const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/pages`);
         response.data.forEach(page => {
-          const key = `${page.title.toLowerCase()}Content`;
-          const lastFetchKey = `${page.title.toLowerCase()}LastFetch`;
+          const key = `${page.title.toLowerCase().replace(/\s/g, '')}Content`;
+          const lastFetchKey = `${page.title.toLowerCase().replace(/\s/g, '')}LastFetch`;
           
           localStorage.setItem(key, page.content);
           localStorage.setItem(lastFetchKey, Date.now().toString());

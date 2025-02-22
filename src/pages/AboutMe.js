@@ -4,7 +4,7 @@ import axios from 'axios';
 
 function AboutMe() {
   const [content, setContent] = useState(() => {
-    const cached = localStorage.getItem('aboutMeContent');
+    const cached = localStorage.getItem('aboutmeContent');
     return cached || '';
   });
 
@@ -15,12 +15,12 @@ function AboutMe() {
       const page = response.data.find(p => p.title === pageName);
       if (page && page.content !== content) {
         setContent(page.content);
-        localStorage.setItem('aboutMeContent', page.content);
-        localStorage.setItem('aboutMeLastFetch', Date.now().toString());
+        localStorage.setItem('aboutmeContent', page.content);
+        localStorage.setItem('aboutmeLastFetch', Date.now().toString());
       }
     } catch (error) {
       console.error('Error fetching content:', error);
-      const cached = localStorage.getItem('aboutMeContent');
+      const cached = localStorage.getItem('aboutmeContent');
       if (cached) setContent(cached);
     }
   }, [content]);

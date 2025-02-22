@@ -59,11 +59,11 @@ function Edit() {
       
       // Clear all page caches to force refresh
       const cacheKeys = [
-        'aboutMeContent',
+        'aboutmeContent',
         'linksContent',
         'readingContent',
         'techStackContent',
-        'aboutMeLastFetch',
+        'aboutmeLastFetch',
         'linksLastFetch',
         'readingLastFetch',
         'techStackLastFetch'
