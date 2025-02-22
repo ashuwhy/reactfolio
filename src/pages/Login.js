@@ -27,7 +27,7 @@ function Login() {
       <BackButton />
       <div className="login-content">
         <div className="login-emoji">🔐</div>
-        <h1>welcome ashu</h1>
+        <h1>welcome, ashu</h1>
         <span className="login-description">
           <p>
             these are private pages, only accessible to me.

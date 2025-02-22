@@ -10,9 +10,14 @@ function Edit() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      navigate('/login');
+      return;
+    }
+
     const fetchPages = async () => {
       try {
-        const token = localStorage.getItem('token');
         const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/pages`, {
           headers: {
             'Authorization': `Bearer ${token}`
@@ -20,7 +25,6 @@ function Edit() {
         });
         setPages(response.data);
       } catch (error) {
-        // If unauthorized, redirect to login
         if (error.response?.status === 401) {
           localStorage.removeItem('token');
           navigate('/login');
@@ -28,12 +32,12 @@ function Edit() {
       }
     };
     fetchPages();
-
-    // Cleanup function to remove token when component unmounts
-    return () => {
-      localStorage.removeItem('token');
-    };
   }, [navigate]);
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    navigate('/login');
+  };
 
   const handleEdit = (page) => {
     setSelectedPage(page);
@@ -70,7 +74,7 @@ function Edit() {
       ];
       
       cacheKeys.forEach(key => localStorage.removeItem(key));
-      alert('Saved successfully!');
+      alert('saved successfully!');
     } catch (error) {
       if (error.response?.status === 401) {
         localStorage.removeItem('token');
@@ -101,6 +105,9 @@ function Edit() {
             <span className="file-path">/{selectedPage.title.toLowerCase()}</span>
             <button className="save-button" onClick={handleSave}>
               save changes
+            </button>
+            <button className="logout-button" onClick={handleLogout}>
+              logout
             </button>
           </div>
           <div className="editor-wrapper">

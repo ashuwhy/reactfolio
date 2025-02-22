@@ -63,6 +63,9 @@
 }
 
 .editor-header {
+  position: relative; 
+  width: 100%;
+  padding: 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -171,4 +174,22 @@
   .editor-tab {
     padding: 0.5rem 1rem;
   }
+}
+
+.logout-button {
+  position: absolute;
+  right: 150px;
+  padding: 8px 16px;
+  background: transparent;
+  border: 1px solid #666;
+  color: #666;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+.logout-button:hover {
+  background: #666;
+  color: #fff;
 }
