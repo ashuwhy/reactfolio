@@ -46,9 +46,14 @@ mongoose.connect(process.env.MONGODB_URI, {
 app.use('/api/auth', authRoutes);
 app.use('/api/pages', pageRoutes);
 
-// Keep-alive endpoint
+// Keep-alive endpoint with status check
 app.get('/ping', (req, res) => {
-  res.send('pong');
+  const status = {
+    status: 'ok',
+    timestamp: new Date().toISOString(),
+    uptime: process.uptime()
+  };
+  res.json(status);
 });
 
 const PORT = process.env.PORT || 5000;
