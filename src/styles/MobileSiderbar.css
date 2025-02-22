@@ -1,3 +1,12 @@
+/**
+ * Apple Notes Portfolio
+ * Original Author: Ashutosh Sharma (@ashuwhy)
+ * GitHub: https://github.com/ashuwhy/reactfolio
+ *
+ * While this template is available for use, proper attribution
+ * to the original author is required.
+ */
+
 /* Mobile-specific styling for the sidebar */
 @media (max-width: 767px) {
     .sidebar {

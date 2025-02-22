@@ -1,3 +1,12 @@
+/**
+ * Apple Notes Portfolio
+ * Original Author: Ashutosh Sharma (@ashuwhy)
+ * GitHub: https://github.com/ashuwhy/reactfolio
+ *
+ * While this template is available for use, proper attribution
+ * to the original author is required.
+ */
+
 import React, { useRef, useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 

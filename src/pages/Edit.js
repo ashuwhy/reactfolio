@@ -1,3 +1,12 @@
+/**
+ * Apple Notes Portfolio
+ * Original Author: Ashutosh Sharma (@ashuwhy)
+ * GitHub: https://github.com/ashuwhy/reactfolio
+ *
+ * While this template is available for use, proper attribution
+ * to the original author is required.
+ */
+
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import '../styles/Edit.css';

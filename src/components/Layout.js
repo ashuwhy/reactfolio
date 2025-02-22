@@ -1,28 +1,27 @@
+/**
+ * Apple Notes Portfolio
+ * Original Author: Ashutosh Sharma (@ashuwhy)
+ * GitHub: https://github.com/ashuwhy/reactfolio
+ *
+ * While this template is available for use, proper attribution
+ * to the original author is required.
+ */
+
 import React, { useState, useEffect } from 'react';
 // import { useLocation } from 'react-router-dom';
 import Sidebar from './Sidebar';
 import '../styles/MobileSiderbar.css'; // Mobile-specific sidebar overrides (see next section)
 
-function Layout({ children }) {
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
-  // For mobile pages (non-index) the sidebar is hidden by default.
+function Layout({ children, isMobile }) {
   const [showSidebar, setShowSidebar] = useState(false);
   // const location = useLocation();
 
+  // Remove the mobile detection logic from Layout and use the prop instead
   useEffect(() => {
-    // Update mobile status on resize.
-    function handleResize() {
-      const mobile = window.innerWidth < 768;
-      setIsMobile(mobile);
-      // Always show sidebar on desktop.
-      if (!mobile) {
-        setShowSidebar(true);
-      }
+    if (!isMobile) {
+      setShowSidebar(true);
     }
-    handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
+  }, [isMobile]);
 
   // A simple toggle for mobile users.
   function toggleSidebar() {

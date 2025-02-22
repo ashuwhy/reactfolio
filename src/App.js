@@ -1,3 +1,12 @@
+/**
+ * Apple Notes Portfolio
+ * Original Author: Ashutosh Sharma (@ashuwhy)
+ * GitHub: https://github.com/ashuwhy/reactfolio
+ *
+ * While this template is available for use, proper attribution
+ * to the original author is required.
+ */
+
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { Analytics } from '@vercel/analytics/react';
@@ -6,7 +15,7 @@ import AboutMe from './pages/AboutMe';
 import Links from './pages/Links';
 import Reading from './pages/Reading';
 import TechStack from './pages/TechStack';
-import MobileIndexPage from './pages/MobileIndexPage'; // Component for the index view (notes sidebar)
+import MobileIndexPage from './pages/MobileIndexPage'; // Mobile index view
 import Edit from './pages/Edit';
 import ProtectedRoute from './components/ProtectedRoute';
 import Login from './pages/Login';
@@ -16,12 +25,11 @@ import './styles/pages.css';
 import './styles/styles.css';
 import axios from 'axios';
 import initialData from './backend/initial.json';
-import Spinner from './components/Spinner';
 
 function App() {
-  const [isMobile, setIsMobile] = useState(null);
+  // Determine mobile status on initial render and update on window resize
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const [isInitialLoad, setIsInitialLoad] = useState(true);
-  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const checkScreenSize = () => setIsMobile(window.innerWidth < 768);
@@ -34,7 +42,7 @@ function App() {
     if (isInitialLoad) {
       const processInitialData = () => {
         if (isMobile) {
-          // On mobile: process in small chunks using requestAnimationFrame
+          // Process initialData in small chunks on mobile using requestAnimationFrame
           let index = 0;
           const processNext = () => {
             if (index < initialData.length) {
@@ -48,16 +56,14 @@ function App() {
                 localStorage.setItem(lastFetchKey, Date.now().toString());
               }
               index++;
-              // Yield to the event loop before processing the next item
               requestAnimationFrame(processNext);
             } else {
               setIsInitialLoad(false);
-              setIsLoading(false);
             }
           };
           processNext();
         } else {
-          // On desktop: process all data at once
+          // Process all data at once on desktop
           initialData.forEach(page => {
             const key = `${page.title.toLowerCase().replace(/\s/g, '')}Content`;
             const lastFetchKey = `${page.title.toLowerCase().replace(/\s/g, '')}LastFetch`;
@@ -69,14 +75,13 @@ function App() {
             }
           });
           setIsInitialLoad(false);
-          setIsLoading(false);
         }
       };
 
       processInitialData();
     }
 
-    // Always fetch fresh content regardless of device type
+    // Always preload fresh content
     const preloadContent = async () => {
       try {
         const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/pages`);
@@ -94,10 +99,10 @@ function App() {
     preloadContent();
   }, [isInitialLoad, isMobile]);
 
-
   return (
     <Router>
-      <Layout>
+      {/* Pass isMobile as a prop to Layout */}
+      <Layout isMobile={isMobile}>
         <Routes>
           <Route
             path="/"

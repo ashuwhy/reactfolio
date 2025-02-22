@@ -47,10 +47,16 @@ build from scratch, a minimalist portfolio website designed to look and feel lik
 - encrypted passwords
 - secure API endpoints
 
-## 📄 license
+## 📄 License & Attribution
 
-MIT License,
+MIT License
 
-This is a personal portfolio you can use as a template, while you're welcome to explore the code and learn from it, direct copying or reuse is not permitted. instead, use this as inspiration to create your own unique portfolio design!
+Original code written by Ashutosh Sharma ([@ashuwhy](https://github.com/ashuwhy))
+Contact: ashutoshsahrmawhy@gmail.com
+
+While this is a personal portfolio you can use as a template, proper attribution is required. When using this code:
+- Maintain the original author information in the codebase
+- Include a link to the original repository
+- Create your own unique design variations
 
 © 2025 Ashutosh Sharma. All rights reserved.
