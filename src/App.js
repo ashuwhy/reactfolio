@@ -14,6 +14,8 @@ import './App.css';
 import './index.css';
 import './styles/pages.css';
 import './styles/styles.css';
+import axios from 'axios';
+import initialData from './backend/initial.json';
 
 function App() {
   const [isMobile, setIsMobile] = useState(null);
@@ -23,6 +25,27 @@ function App() {
     checkScreenSize();
     window.addEventListener('resize', checkScreenSize);
     return () => window.removeEventListener('resize', checkScreenSize);
+  }, []);
+
+  useEffect(() => {
+    // Immediately set initial data from static JSON
+    Object.values(initialData).forEach(page => {
+      localStorage.setItem(`${page.title.toLowerCase()}Content`, page.content);
+    });
+
+    // Then fetch fresh content in the background
+    const preloadContent = async () => {
+      try {
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/pages`);
+        response.data.forEach(page => {
+          localStorage.setItem(`${page.title.toLowerCase()}Content`, page.content);
+        });
+      } catch (error) {
+        console.error('Preload failed:', error);
+      }
+    };
+    
+    preloadContent();
   }, []);
 
   // While we detect the viewport size, you can return null or a spinner.

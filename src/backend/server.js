@@ -7,6 +7,12 @@ const pageRoutes = require('./routes/pages');
 
 dotenv.config();
 
+// Check for required environment variables
+if (!process.env.MONGODB_URI) {
+  console.error('MONGODB_URI environment variable is not defined');
+  process.exit(1);
+}
+
 const app = express();
 app.use(cors({
   origin: ['https://ashuwhy.vercel.app', 'http://localhost:3000'],
@@ -23,7 +29,10 @@ mongoose.connect(process.env.MONGODB_URI, {
   authSource: 'admin'
 })
   .then(() => console.log('MongoDB connected'))
-  .catch(err => console.log(err));
+  .catch(err => {
+    console.error('MongoDB connection error:', err);
+    process.exit(1);
+  });
 
 app.use('/api/auth', authRoutes);
 app.use('/api/pages', pageRoutes);
