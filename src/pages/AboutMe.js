@@ -13,7 +13,7 @@ function AboutMe() {
       const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/pages`);
       const pageName = 'About Me';
       const page = response.data.find(p => p.title === pageName);
-      if (page) {
+      if (page && page.content !== content) {
         setContent(page.content);
         localStorage.setItem('aboutMeContent', page.content);
         localStorage.setItem('aboutMeLastFetch', Date.now().toString());
@@ -23,7 +23,7 @@ function AboutMe() {
       const cached = localStorage.getItem('aboutMeContent');
       if (cached) setContent(cached);
     }
-  }, []);
+  }, [content]);
 
   useEffect(() => {
     fetchContent();

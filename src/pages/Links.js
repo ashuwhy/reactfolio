@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import BackButton from '../components/BackButton';
 import axios from 'axios';
 
@@ -9,31 +9,30 @@ function Links() {
     return cached || '';
   });
 
-  useEffect(() => {
-    const fetchContent = async () => {
-      try {
-        const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/pages`);
-        const pageName = 'Links'; // Change for each component
-        const page = response.data.find(p => p.title === pageName);
-        if (page) {
-          setContent(page.content);
-          // Don't cache for more than 30 seconds when editing is happening
-          localStorage.setItem('linksContent', page.content);
-          localStorage.setItem('linksLastFetch', Date.now().toString());
-        }
-      } catch (error) {
-        console.error('Error fetching content:', error);
-        const cached = localStorage.getItem('linksContent');
-        if (cached) setContent(cached);
+  const fetchContent = useCallback(async () => {
+    try {
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/pages`);
+      const pageName = 'Links';
+      const page = response.data.find(p => p.title === pageName);
+      if (page && page.content !== content) {  // Only update if content is different
+        setContent(page.content);
+        localStorage.setItem('linksContent', page.content);
+        localStorage.setItem('linksLastFetch', Date.now().toString());
       }
-    };
+    } catch (error) {
+      console.error('Error fetching content:', error);
+      const cached = localStorage.getItem('linksContent');
+      if (cached) setContent(cached);
+    }
+  }, [content]);
 
+  useEffect(() => {
     fetchContent();
     
     // Poll for updates every 30 seconds
     const interval = setInterval(fetchContent, 30000);
     return () => clearInterval(interval);
-  }, []);
+  }, [fetchContent]);
 
   return (
     <>
@@ -44,4 +43,4 @@ function Links() {
   );
 }
 
-export default Links; 
+export default Links;

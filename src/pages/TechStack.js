@@ -13,7 +13,7 @@ function TechStack() {
       const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/pages`);
       const pageName = 'Tech Stack';
       const page = response.data.find(p => p.title === pageName);
-      if (page) {
+      if (page && page.content !== content) {  // Only update if content is different
         setContent(page.content);
         localStorage.setItem('techStackContent', page.content);
         localStorage.setItem('techStackLastFetch', Date.now().toString());
@@ -23,13 +23,13 @@ function TechStack() {
       const cached = localStorage.getItem('techStackContent');
       if (cached) setContent(cached);
     }
-  }, []); // Empty dependency array since it doesn't use any props or state
+  }, [content]);
 
   useEffect(() => {
     fetchContent();
     const interval = setInterval(fetchContent, 30000);
     return () => clearInterval(interval);
-  }, [fetchContent]); // Add fetchContent to dependency array
+  }, [fetchContent]);
 
   return (
     <>

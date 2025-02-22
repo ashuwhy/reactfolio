@@ -19,6 +19,7 @@ import initialData from './backend/initial.json';
 
 function App() {
   const [isMobile, setIsMobile] = useState(null);
+  const [isInitialLoad, setIsInitialLoad] = useState(true);
 
   useEffect(() => {
     const checkScreenSize = () => setIsMobile(window.innerWidth < 768);
@@ -28,17 +29,34 @@ function App() {
   }, []);
 
   useEffect(() => {
-    // Immediately set initial data from static JSON
-    Object.values(initialData).forEach(page => {
-      localStorage.setItem(`${page.title.toLowerCase()}Content`, page.content);
-    });
+    // Only use initial data if localStorage is empty
+    if (isInitialLoad) {
+      initialData.forEach(page => {
+        const key = `${page.title.toLowerCase()}Content`;
+        const lastFetchKey = `${page.title.toLowerCase()}LastFetch`;
+        
+        // Only set initial data if no content exists or last fetch was too old
+        const lastFetch = localStorage.getItem(lastFetchKey);
+        const isStale = !lastFetch || Date.now() - parseInt(lastFetch) > 300000; // 5 minutes
 
-    // Then fetch fresh content in the background
+        if (!localStorage.getItem(key) || isStale) {
+          localStorage.setItem(key, page.content);
+          localStorage.setItem(lastFetchKey, Date.now().toString());
+        }
+      });
+      setIsInitialLoad(false);
+    }
+
+    // Always fetch fresh content
     const preloadContent = async () => {
       try {
         const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/pages`);
         response.data.forEach(page => {
-          localStorage.setItem(`${page.title.toLowerCase()}Content`, page.content);
+          const key = `${page.title.toLowerCase()}Content`;
+          const lastFetchKey = `${page.title.toLowerCase()}LastFetch`;
+          
+          localStorage.setItem(key, page.content);
+          localStorage.setItem(lastFetchKey, Date.now().toString());
         });
       } catch (error) {
         console.error('Preload failed:', error);
@@ -46,7 +64,7 @@ function App() {
     };
     
     preloadContent();
-  }, []);
+  }, [isInitialLoad]);
 
   // While we detect the viewport size, you can return null or a spinner.
   if (isMobile === null) {

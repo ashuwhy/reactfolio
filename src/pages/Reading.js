@@ -13,7 +13,7 @@ function Reading() {
       const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/pages`);
       const pageName = 'Reading';
       const page = response.data.find(p => p.title === pageName);
-      if (page) {
+      if (page && page.content !== content) {  // Only update if content is different
         setContent(page.content);
         localStorage.setItem('readingContent', page.content);
         localStorage.setItem('readingLastFetch', Date.now().toString());
@@ -23,7 +23,7 @@ function Reading() {
       const cached = localStorage.getItem('readingContent');
       if (cached) setContent(cached);
     }
-  }, []);
+  }, [content]);
 
   useEffect(() => {
     fetchContent();

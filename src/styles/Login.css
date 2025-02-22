@@ -14,7 +14,7 @@
   max-width: 360px;
   padding: 2rem;
   background: var(--background-secondary);
-  border-radius: 12px;
+  border-radius: 8px;
   border: 1px solid var(--border-color);
   display: flex;
   flex-direction: column;
@@ -37,6 +37,7 @@
   color: var(--text);
   font-weight: 600;
   margin: 0;
+  margin-bottom: -14px;
 }
 
 .login-form {
@@ -198,3 +199,9 @@
     padding: 1.5rem;
   }
 } 
+
+.login-description {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  text-align: center;
+}
