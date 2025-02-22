@@ -10,6 +10,7 @@ a minimalist portfolio website designed to look and feel like apple notes. built
 - protected routes and token-based authentication
 - real-time content management system
 - dynamic content updates with automatic cache
+- note hardcoded content
 - clean, native apple notes design
 - responsive layout with dark mode
 - smooth transitions and animations
@@ -36,7 +37,6 @@ a minimalist portfolio website designed to look and feel like apple notes. built
 - axios
 - jsonwebtoken
 - bcrypt
-- prismjs
 
 ## 🔒 security features
 
