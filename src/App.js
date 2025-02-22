@@ -16,10 +16,12 @@ import './styles/pages.css';
 import './styles/styles.css';
 import axios from 'axios';
 import initialData from './backend/initial.json';
+import Spinner from './components/Spinner';
 
 function App() {
   const [isMobile, setIsMobile] = useState(null);
   const [isInitialLoad, setIsInitialLoad] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const checkScreenSize = () => setIsMobile(window.innerWidth < 768);
@@ -29,32 +31,58 @@ function App() {
   }, []);
 
   useEffect(() => {
-    // Only use initial data if localStorage is empty
     if (isInitialLoad) {
-      initialData.forEach(page => {
-        const key = `${page.title.toLowerCase().replace(/\s/g, '')}Content`;
-        const lastFetchKey = `${page.title.toLowerCase().replace(/\s/g, '')}LastFetch`;
-        
-        // Only set initial data if no content exists or last fetch was too old
-        const lastFetch = localStorage.getItem(lastFetchKey);
-        const isStale = !lastFetch || Date.now() - parseInt(lastFetch) > 300000; // 5 minutes
-
-        if (!localStorage.getItem(key) || isStale) {
-          localStorage.setItem(key, page.content);
-          localStorage.setItem(lastFetchKey, Date.now().toString());
+      const processInitialData = () => {
+        if (isMobile) {
+          // On mobile: process in small chunks using requestAnimationFrame
+          let index = 0;
+          const processNext = () => {
+            if (index < initialData.length) {
+              const page = initialData[index];
+              const key = `${page.title.toLowerCase().replace(/\s/g, '')}Content`;
+              const lastFetchKey = `${page.title.toLowerCase().replace(/\s/g, '')}LastFetch`;
+              const lastFetch = localStorage.getItem(lastFetchKey);
+              const isStale = !lastFetch || Date.now() - parseInt(lastFetch) > 300000;
+              if (!localStorage.getItem(key) || isStale) {
+                localStorage.setItem(key, page.content);
+                localStorage.setItem(lastFetchKey, Date.now().toString());
+              }
+              index++;
+              // Yield to the event loop before processing the next item
+              requestAnimationFrame(processNext);
+            } else {
+              setIsInitialLoad(false);
+              setIsLoading(false);
+            }
+          };
+          processNext();
+        } else {
+          // On desktop: process all data at once
+          initialData.forEach(page => {
+            const key = `${page.title.toLowerCase().replace(/\s/g, '')}Content`;
+            const lastFetchKey = `${page.title.toLowerCase().replace(/\s/g, '')}LastFetch`;
+            const lastFetch = localStorage.getItem(lastFetchKey);
+            const isStale = !lastFetch || Date.now() - parseInt(lastFetch) > 300000;
+            if (!localStorage.getItem(key) || isStale) {
+              localStorage.setItem(key, page.content);
+              localStorage.setItem(lastFetchKey, Date.now().toString());
+            }
+          });
+          setIsInitialLoad(false);
+          setIsLoading(false);
         }
-      });
-      setIsInitialLoad(false);
+      };
+
+      processInitialData();
     }
 
-    // Always fetch fresh content
+    // Always fetch fresh content regardless of device type
     const preloadContent = async () => {
       try {
         const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/pages`);
         response.data.forEach(page => {
           const key = `${page.title.toLowerCase().replace(/\s/g, '')}Content`;
           const lastFetchKey = `${page.title.toLowerCase().replace(/\s/g, '')}LastFetch`;
-          
           localStorage.setItem(key, page.content);
           localStorage.setItem(lastFetchKey, Date.now().toString());
         });
@@ -62,13 +90,12 @@ function App() {
         console.error('Preload failed:', error);
       }
     };
-    
-    preloadContent();
-  }, [isInitialLoad]);
 
-  // While we detect the viewport size, you can return null or a spinner.
-  if (isMobile === null) {
-    return null;
+    preloadContent();
+  }, [isInitialLoad, isMobile]);
+
+  if (isMobile === null || (isMobile && isLoading)) {
+    return <Spinner />;
   }
 
   return (

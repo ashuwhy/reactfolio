@@ -1,6 +1,6 @@
 # 📝 apple notes portfolio
 
-a minimalist portfolio website designed to look and feel like apple notes. built with react and pure css.
+build from scratch, a minimalist portfolio website designed to look and feel like apple notes. built with react and pure css.
 
 ![preview](./img/preview.png)
 
