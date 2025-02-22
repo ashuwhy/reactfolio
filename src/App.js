@@ -94,9 +94,6 @@ function App() {
     preloadContent();
   }, [isInitialLoad, isMobile]);
 
-  if (isMobile === null || (isMobile && isLoading)) {
-    return <Spinner />;
-  }
 
   return (
     <Router>
