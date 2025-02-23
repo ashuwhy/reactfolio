@@ -47,7 +47,7 @@ mongoose.connect(process.env.MONGODB_URI, {
 app.use('/api/auth', authRoutes);
 app.use('/api/pages', pageRoutes);
 
-// Enhanced keep-alive endpoint with detailed status check
+// Enhanced keep-alive endpoint with comprehensive status check
 app.get('/ping', async (req, res) => {
   try {
     // Test MongoDB connection
@@ -55,12 +55,39 @@ app.get('/ping', async (req, res) => {
     
     const status = {
       status: 'ok',
-      timestamp: new Date().toISOString(),
-      uptime: process.uptime(),
-      database: 'connected',
-      memory: {
-        used: process.memoryUsage().heapUsed / 1024 / 1024,
-        total: process.memoryUsage().heapTotal / 1024 / 1024
+      server: {
+        timestamp: new Date().toISOString(),
+        timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+        uptime: {
+          seconds: Math.floor(process.uptime()),
+          formatted: formatUptime(process.uptime())
+        },
+        version: {
+          node: process.version,
+          platform: process.platform,
+          arch: process.arch
+        }
+      },
+      database: {
+        status: 'connected',
+        type: 'MongoDB',
+        ping: 'successful'
+      },
+      performance: {
+        memory: {
+          used: Math.round(process.memoryUsage().heapUsed / 1024 / 1024 * 100) / 100,
+          total: Math.round(process.memoryUsage().heapTotal / 1024 / 1024 * 100) / 100,
+          unit: 'MB',
+          percentUsed: Math.round(process.memoryUsage().heapUsed / process.memoryUsage().heapTotal * 100)
+        },
+        cpu: {
+          load: Math.round(process.cpuUsage().user / 1000000),
+          unit: 'ms'
+        }
+      },
+      lastPing: {
+        time: new Date().toISOString(),
+        success: true
       }
     };
     res.json(status);
@@ -68,10 +95,30 @@ app.get('/ping', async (req, res) => {
     res.status(500).json({
       status: 'error',
       timestamp: new Date().toISOString(),
-      error: 'Database connection failed'
+      error: 'Database connection failed',
+      details: {
+        message: error.message,
+        time: new Date().toISOString()
+      }
     });
   }
 });
+
+// Helper function to format uptime in a human-readable format
+function formatUptime(uptime) {
+  const days = Math.floor(uptime / 86400);
+  const hours = Math.floor((uptime % 86400) / 3600);
+  const minutes = Math.floor((uptime % 3600) / 60);
+  const seconds = Math.floor(uptime % 60);
+
+  const parts = [];
+  if (days > 0) parts.push(`${days}d`);
+  if (hours > 0) parts.push(`${hours}h`);
+  if (minutes > 0) parts.push(`${minutes}m`);
+  if (seconds > 0) parts.push(`${seconds}s`);
+
+  return parts.join(' ');
+}
 
 function pingSelf() {
   https.get(`${process.env.REACT_APP_API_URL}/ping`, (resp) => {
