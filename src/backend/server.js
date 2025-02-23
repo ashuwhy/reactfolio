@@ -13,6 +13,7 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 const authRoutes = require('./routes/auth');
 const pageRoutes = require('./routes/pages');
+const https = require('https');
 
 dotenv.config();
 
@@ -46,15 +47,42 @@ mongoose.connect(process.env.MONGODB_URI, {
 app.use('/api/auth', authRoutes);
 app.use('/api/pages', pageRoutes);
 
-// Keep-alive endpoint with status check
-app.get('/ping', (req, res) => {
-  const status = {
-    status: 'ok',
-    timestamp: new Date().toISOString(),
-    uptime: process.uptime()
-  };
-  res.json(status);
+// Enhanced keep-alive endpoint with detailed status check
+app.get('/ping', async (req, res) => {
+  try {
+    // Test MongoDB connection
+    await mongoose.connection.db.admin().ping();
+    
+    const status = {
+      status: 'ok',
+      timestamp: new Date().toISOString(),
+      uptime: process.uptime(),
+      database: 'connected',
+      memory: {
+        used: process.memoryUsage().heapUsed / 1024 / 1024,
+        total: process.memoryUsage().heapTotal / 1024 / 1024
+      }
+    };
+    res.json(status);
+  } catch (error) {
+    res.status(500).json({
+      status: 'error',
+      timestamp: new Date().toISOString(),
+      error: 'Database connection failed'
+    });
+  }
 });
+
+function pingSelf() {
+  https.get(`${process.env.REACT_APP_API_URL}/ping`, (resp) => {
+    console.log('Self-ping successful:', new Date().toISOString());
+  }).on('error', (err) => {
+    console.error('Self-ping failed:', err.message);
+  });
+}
+
+// Ping every 14 minutes (840000 ms)
+setInterval(pingSelf, 840000);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
