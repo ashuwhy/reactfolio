@@ -14,6 +14,7 @@ const dotenv = require('dotenv');
 const authRoutes = require('./routes/auth');
 const pageRoutes = require('./routes/pages');
 const https = require('https');
+const cron = require('node-cron');
 
 dotenv.config();
 
@@ -128,8 +129,10 @@ function pingSelf() {
   });
 }
 
-// Ping every 14 minutes (840000 ms)
-setInterval(pingSelf, 840000);
+// Run every 10 minutes
+cron.schedule('*/10 * * * *', () => {
+  pingSelf();
+});
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+app.listen(PORT, () => console.log(`
